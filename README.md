@@ -1,7 +1,7 @@
 salt tools
 ==========
 
-### Install[yum package](https://repo.saltstack.com/#rhel)
+### Install: [Official yum package](https://repo.saltstack.com/#rhel)
 *   add yum source(latest version): sudo yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm
 
 *   save the yum source file: saltstack.repo -> /etc/yum.repos.d/saltstack.repo
