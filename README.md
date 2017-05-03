@@ -22,6 +22,8 @@ salt tools
 
 *   ping all servers: salt '*' test.ping
 
+*   list cpus: salt '*' grains.item num_cpus
+
 *   list disk usage: salt '*' disk.usage
 
 *   accept one server: salt-key -a xxxxx
