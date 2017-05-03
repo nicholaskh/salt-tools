@@ -1,25 +1,34 @@
 salt tools
 ==========
 
-# HOW TO USE
--   sync yum repos: salt '*' state.sls conf/yum
+### Install[yum package](https://repo.saltstack.com/#rhel)
+*   add yum source(latest version): sudo yum install https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el7.noarch.rpm
 
--   install openresty: salt '*' pkg.install openresty
+*   save the yum source file: saltstack.repo -> /etc/yum.repos.d/saltstack.repo
 
--   sync nginx config files: salt '*' state.sls conf/nginx
+*   install
+    -   yum install salt-master
+    -   yum install salt-minion
 
-# Memo
--   list all servers: salt-key -L
+### HOW TO USE
+*   sync yum repos: salt '*' state.sls conf/yum
 
--   ping all servers: salt '*' test.ping
+*   install openresty: salt '*' pkg.install openresty
 
--   list disk usage: salt '*' disk.usage
+*   sync nginx config files: salt '*' state.sls conf/nginx
 
--   accept one server: salt-key -a xxxxx
+### Memo
+*   list all servers: salt-key -L
 
--   set auto accept: /etc/salt/master -> auto_accept: True
+*   ping all servers: salt '*' test.ping
 
--   config minion: /etc/salt/minion
+*   list disk usage: salt '*' disk.usage
+
+*   accept one server: salt-key -a xxxxx
+
+*   set auto accept: /etc/salt/master -> auto_accept: True
+
+*   config minion: /etc/salt/minion
     -   master: {{master ip}}
     -   id: xxxxxxxxx
     -   log_level: debug -> see debug logs
