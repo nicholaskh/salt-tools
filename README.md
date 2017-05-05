@@ -28,6 +28,8 @@ salt tools
 
 *   accept one server: salt-key -a xxxxx
 
+*   run command: salt '*' cmd.run 'service skydns restart'
+
 *   set auto accept: /etc/salt/master -> auto_accept: True
 
 *   config minion: /etc/salt/minion
