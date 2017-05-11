@@ -10,7 +10,7 @@ lua_ssl_trusted_certificate server.pem;
 
 server {
     listen 80;
-    server_name static-test.ffan.com 0.0.0.0 192.168.1.12 img1.ffan.com timg.ffan.com;
+    server_name static-test.ffan.com 0.0.0.0 192.168.1.12 img1.ffan.com timg.ffan.com iosapps.itunes.apple.com;
     set $root /var/wd/dist-cdn-pop;
     set $template_root $root;
 
@@ -48,7 +48,7 @@ resolver	202.106.196.115;
     #
       server {
          listen       443 ssl;
-        server_name  static-test.ffan.com 0.0.0.0 timg.ffan.com img1.ffan.com 192.168.1.12 ;
+        server_name  static-test.ffan.com 0.0.0.0 timg.ffan.com img1.ffan.com 192.168.1.12 iosapps.itunes.apple.com;
         ssl  on;
         ssl_certificate     server.pem;
         ssl_certificate_key   server.key;
