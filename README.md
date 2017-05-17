@@ -36,3 +36,6 @@ salt tools
     -   master: {{master ip}}
     -   id: xxxxxxxxx
     -   log_level: debug -> see debug logs
+
+*   register domain resolving
+    -   salt '*' cmd.run '/usr/local/bin/etcdctl set /skydns/com/apple/itunes/iosapps "{\"host\":\"192.168.1.12\"}"'
