@@ -28,8 +28,7 @@ fi
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-SKYDNS_HOME=/var/wd/coredns/coredns
-DAEMON=$SKYDNS_HOME/coredns
+DAEMON=/usr/local/bin/coredns
 
 test -f $DAEMON || exit 0
 
@@ -39,12 +38,11 @@ test -f $DAEMON || exit 0
 DAEMON_COREFILE_LIMIT=unlimited
 
 start() {
-    cd $SKYDNS_HOME
     ulimit -n 40960
     ulimit -c unlimited
     ulimit -l unlimited
     export ETCD_MACHINES='http://127.0.0.1:2379'
-    /var/wd/coredns/coredns/etcd &
+    /var/wd/skydns/skydns/etcd &
     $DAEMON -conf /etc/Corefile &
     errcode=$?
     return $errcode
