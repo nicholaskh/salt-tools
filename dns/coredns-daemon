@@ -45,7 +45,7 @@ start() {
     ulimit -l unlimited
     export ETCD_MACHINES='http://127.0.0.1:2379'
     /var/wd/coredns/coredns/etcd &
-    $DAEMON -addr 0.0.0.0:53 -rcache-ttl 3600 -nameservers 114.114.114.114:53,8.8.8.8:53 -domain ffan.com -machines http://127.0.0.1:2379 &
+    $DAEMON -conf /etc/Corefile &
     errcode=$?
     return $errcode
 }

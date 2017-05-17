@@ -1,5 +1,4 @@
 img1.ffan.com:53 {
-    #proxy . 114.114.114.114:53
     etcd
     errors stdout
     log stdout
@@ -15,4 +14,8 @@ iosapps.itunes.apple.com:53 {
     etcd
     errors stdout
     log stdout
+}
+
+.:53 {
+    proxy . 114.114.114.114:53
 }
