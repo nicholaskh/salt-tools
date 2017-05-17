@@ -4,7 +4,6 @@ lua_package_cpath "/var/wd/dist-cdn-pop/?.so;;";
 lua_shared_dict cache 24576m;
 lua_shared_dict locks 100m;
 lua_shared_dict stats 500m;
-init_by_lua require('app.nginx.init.init'):run();
 lua_ssl_verify_depth 2;
 lua_ssl_trusted_certificate server.pem;
 
@@ -14,7 +13,7 @@ server {
     set $root /var/wd/dist-cdn-pop;
     set $template_root $root;
 
-resolver	202.106.196.115;
+    resolver    202.106.196.115;
     #resolver 192.168.1.13;
 
     location /static {
@@ -35,55 +34,52 @@ resolver	202.106.196.115;
     }    
     location ~* \.(ico|php)$ {
         root   html;
-	index  index.html index.htm;
+	    index  index.html index.htm;
     }
     location / {
         content_by_lua_file $root/pub/index.lua;
     }
-   
 }
 
-
-    # HTTPS server
-    #
-      server {
-         listen       443 ssl;
-        server_name  static-test.ffan.com 0.0.0.0 timg.ffan.com img1.ffan.com 192.168.1.12 iosapps.itunes.apple.com;
-        ssl  on;
-        ssl_certificate     server.pem;
-        ssl_certificate_key   server.key;
-        ssl_protocols SSLv3 TLSv1 ;
-        ssl_ciphers HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM; 
-	ssl_prefer_server_ciphers on;
-	    set $root /var/wd/dist-cdn-pop;
-        set $template_root $root;
-        resolver	202.106.196.115;
-        #resolver 192.168.1.13;
-        location /static {
-            alias $root/pub/static;
-        }
-
-        # Access log with buffer, or disable it completetely if unneeded
-        access_log /var/wd/dist-cdn-pop/log/access.log combined buffer=16k;
-        # access_log off;
-
-        # Error log
-        error_log /var/wd/dist-cdn-pop/log/error.log info;
-        location =/stat {
-           content_by_lua_file $root/pub/stat.lua;
-      }
-      location ~* \.(ico|php)$ {
-         root   html;
-         index  index.html index.htm;
-      }
-        location / {
-            content_by_lua_file $root/pub/index.lua;
-        }
-
-    #    location /test {
-    #        content_by_lua_file $root/pub/test.lua;
-    #    }
-    #    ssl_session_cache    shared:SSL:1m;
-    #    ssl_session_timeout  5m;
-
+# HTTPS server
+#
+server {
+    listen       443 ssl;
+    server_name  static-test.ffan.com 0.0.0.0 timg.ffan.com img1.ffan.com 192.168.1.12 iosapps.itunes.apple.com;
+    ssl  on;
+    ssl_certificate     server.pem;
+    ssl_certificate_key   server.key;
+    ssl_protocols SSLv3 TLSv1 ;
+    ssl_ciphers HIGH:!ADH:!EXPORT56:RC4+RSA:+MEDIUM; 
+    ssl_prefer_server_ciphers on;
+    set $root /var/wd/dist-cdn-pop;
+    set $template_root $root;
+    resolver	202.106.196.115;
+    #resolver 192.168.1.13;
+    location /static {
+        alias $root/pub/static;
     }
+
+    # Access log with buffer, or disable it completetely if unneeded
+    access_log /var/wd/dist-cdn-pop/log/access.log combined buffer=16k;
+    # access_log off;
+
+    # Error log
+    error_log /var/wd/dist-cdn-pop/log/error.log info;
+    location =/stat {
+        content_by_lua_file $root/pub/stat.lua;
+    }
+    location ~* \.(ico|php)$ {
+        root   html;
+        index  index.html index.htm;
+    }
+    location / {
+        content_by_lua_file $root/pub/index.lua;
+    }
+
+    # location /test {
+    #     content_by_lua_file $root/pub/test.lua;
+    # }
+    # ssl_session_cache    shared:SSL:1m;
+    # ssl_session_timeout  5m;
+}
