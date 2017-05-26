@@ -1,7 +1,8 @@
 lua_code_cache on;
 lua_package_path "/var/wd/dist-cdn-pop/?.lua;;";
 lua_package_cpath "/var/wd/dist-cdn-pop/?.so;;";
-lua_shared_dict cache 24576m;
+lua_shared_dict cache 16384m;
+lua_shared_dict ipacache 8192m;
 lua_shared_dict locks 100m;
 lua_shared_dict stats 500m;
 lua_ssl_verify_depth 2;
