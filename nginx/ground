@@ -30,6 +30,9 @@ server {
     location =/stat {
         content_by_lua_file $root/pub/stat.lua;
     }
+    location =/dump {
+        content_by_lua_file $root/pub/dump.lua;
+    }
     location =/test {
         content_by_lua_file $root/pub/test.lua;
     }    
